@@ -1,0 +1,9 @@
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\bin\Debug\Form1.exe.config
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\bin\Debug\Form1.exe
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\bin\Debug\Form1.pdb
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.csproj.AssemblyReference.cache
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.Properties.Resources.resources
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.csproj.GenerateResource.cache
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.csproj.CoreCompileInputs.cache
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.exe
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.pdb
