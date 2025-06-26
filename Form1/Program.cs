@@ -267,7 +267,7 @@ namespace CyberSecurityAwarenessBot
         {
             try
             {
-                using (SoundPlayer player = new SoundPlayer("welcome.wav"))
+                using (SoundPlayer player = new SoundPlayer("Recording.wav"))
                 {
                     player.Play();
                 }
