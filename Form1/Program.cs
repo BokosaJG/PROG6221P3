@@ -56,7 +56,7 @@ namespace CyberSecurityAwarenessBot
         private const int MaxLogEntries = 10;
 
         // NLP keywords
-        private readonly string[] taskKeywords = { "task", "remind", "reminder", "add", "create", "set", "delete", "remove" };
+        private readonly string[] taskKeywords = { "task", "remind", "reminder", "add", "create", "set", "delete", "remove", "complete" };
         private readonly string[] quizKeywords = { "quiz", "game", "test", "question", "challenge" };
         private readonly string[] logKeywords = { "log", "activity", "history", "summary", "what have you done" };
 
@@ -80,6 +80,7 @@ namespace CyberSecurityAwarenessBot
         private Button showLogButton;
         private Button startQuizButton;
         private Button deleteTaskButton;
+        private Button completeTaskButton;
 
         public Form1()
         {
@@ -218,12 +219,27 @@ namespace CyberSecurityAwarenessBot
             deleteTaskButton.Click += DeleteTaskButton_Click;
             sidePanel.Controls.Add(deleteTaskButton);
 
+            // Complete Task button
+            completeTaskButton = new Button
+            {
+                Text = "Complete Selected Task",
+                Size = new Size(200, 30),
+                Location = new Point(0, 260),
+                BackColor = Color.FromArgb(40, 167, 69),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9)
+            };
+            completeTaskButton.FlatAppearance.BorderSize = 0;
+            completeTaskButton.Click += CompleteTaskButton_Click;
+            sidePanel.Controls.Add(completeTaskButton);
+
             // Show Log button
             showLogButton = new Button
             {
                 Text = "Show Activity Log",
                 Size = new Size(200, 40),
-                Location = new Point(0, 260),
+                Location = new Point(0, 295),
                 BackColor = AccentColor,
                 ForeColor = DarkText,
                 FlatStyle = FlatStyle.Flat,
@@ -238,7 +254,7 @@ namespace CyberSecurityAwarenessBot
             {
                 Text = "Start Cybersecurity Quiz",
                 Size = new Size(200, 40),
-                Location = new Point(0, 310),
+                Location = new Point(0, 340),
                 BackColor = AccentColor,
                 ForeColor = DarkText,
                 FlatStyle = FlatStyle.Flat,
@@ -251,8 +267,8 @@ namespace CyberSecurityAwarenessBot
             // Quiz panel (initially hidden)
             quizPanel = new Panel
             {
-                Location = new Point(0, 360),
-                Size = new Size(200, 200),
+                Location = new Point(0, 385),
+                Size = new Size(200, 175),
                 Visible = false
             };
             sidePanel.Controls.Add(quizPanel);
@@ -270,7 +286,7 @@ namespace CyberSecurityAwarenessBot
             quizOptionsPanel = new FlowLayoutPanel
             {
                 Location = new Point(0, 70),
-                Size = new Size(200, 120),
+                Size = new Size(200, 105),
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true
@@ -308,6 +324,25 @@ namespace CyberSecurityAwarenessBot
             else
             {
                 AddBotMessage("Please select a task to delete first.");
+            }
+        }
+
+        private void CompleteTaskButton_Click(object sender, EventArgs e)
+        {
+            if (taskListBox.SelectedIndex >= 0 && taskListBox.SelectedIndex < tasks.Count)
+            {
+                var taskToComplete = tasks[taskListBox.SelectedIndex];
+                taskToComplete.IsCompleted = true;
+                taskToComplete.CompletionDate = DateTime.Now;
+                UpdateTaskList();
+
+                string logEntry = $"Task completed: '{taskToComplete.Description}'";
+                AddToActivityLog(logEntry);
+                AddBotMessage($"✅ Task marked as complete: \"{taskToComplete.Description}\"");
+            }
+            else
+            {
+                AddBotMessage("Please select a task to mark as complete first.");
             }
         }
 
@@ -656,6 +691,34 @@ namespace CyberSecurityAwarenessBot
                     AddBotMessage("Please select the task you want to delete from the side panel and click the 'Delete Selected Task' button.");
                 }
             }
+            else if (input.ToLower().Contains("complete task") || input.ToLower().Contains("mark task as complete"))
+            {
+                if (tasks.Count == 0)
+                {
+                    AddBotMessage("You don't have any tasks to mark as complete.");
+                    return;
+                }
+
+                if (input.ToLower().Contains("all"))
+                {
+                    foreach (var task in tasks)
+                    {
+                        task.IsCompleted = true;
+                        task.CompletionDate = DateTime.Now;
+                    }
+                    UpdateTaskList();
+                    AddBotMessage("All tasks have been marked as complete.");
+                    AddToActivityLog("All tasks marked complete");
+                }
+                else
+                {
+                    AddBotMessage("Please select the task you want to mark as complete from the side panel and click the 'Complete Selected Task' button.");
+                }
+            }
+            else if (input.ToLower().Contains("show completed tasks"))
+            {
+                ShowCompletedTasks();
+            }
             else if (input.ToLower().Contains("add task") || input.ToLower().Contains("create task"))
             {
                 string taskDescription = ExtractTaskDescription(input);
@@ -669,7 +732,8 @@ namespace CyberSecurityAwarenessBot
                         Title = "Security Task",
                         Description = taskDescription,
                         DueDate = dueDate ?? DateTime.Now.AddDays(1),
-                        IsCompleted = false
+                        IsCompleted = false,
+                        CompletionDate = null
                     };
 
                     tasks.Add(task);
@@ -692,8 +756,28 @@ namespace CyberSecurityAwarenessBot
             {
                 AddBotMessage($"{sentimentPrefix}I can help you with cybersecurity tasks. Try saying:\n" +
                     "- \"Add task to enable two-factor authentication in 3 days\"\n" +
+                    "- \"Complete task\" (then select which one)\n" +
                     "- \"Delete task\" (then select which one)\n" +
-                    "- \"Show tasks\"");
+                    "- \"Show tasks\"\n" +
+                    "- \"Show completed tasks\"");
+            }
+        }
+
+        private void ShowCompletedTasks()
+        {
+            var completedTasks = tasks.Where(t => t.IsCompleted).ToList();
+            if (completedTasks.Count == 0)
+            {
+                AddBotMessage("You haven't completed any tasks yet.");
+                return;
+            }
+
+            AddBotMessage("✅ Completed tasks:");
+            foreach (var task in completedTasks)
+            {
+                string completionDate = task.CompletionDate.HasValue ?
+                    task.CompletionDate.Value.ToShortDateString() : "unknown date";
+                AddBotMessage($"- {task.Description} (Completed on {completionDate})");
             }
         }
 
@@ -757,7 +841,8 @@ namespace CyberSecurityAwarenessBot
 
             foreach (var task in tasks)
             {
-                taskListBox.Items.Add($"{task.Description} (Due: {task.DueDate:MM/dd})");
+                string status = task.IsCompleted ? "[✓] " : "[ ] ";
+                taskListBox.Items.Add($"{status}{task.Description} (Due: {task.DueDate:MM/dd})");
             }
         }
 
@@ -772,7 +857,8 @@ namespace CyberSecurityAwarenessBot
             AddBotMessage("📋 Here are your current cybersecurity tasks:");
             foreach (var task in tasks)
             {
-                AddBotMessage($"- {task.Description} (Due: {task.DueDate.ToShortDateString()})");
+                string status = task.IsCompleted ? "✓ Completed" : "◻ Pending";
+                AddBotMessage($"- {status}: {task.Description} (Due: {task.DueDate.ToShortDateString()})");
             }
         }
 
@@ -910,6 +996,7 @@ namespace CyberSecurityAwarenessBot
         public string Description { get; set; }
         public DateTime DueDate { get; set; }
         public bool IsCompleted { get; set; }
+        public DateTime? CompletionDate { get; set; }
     }
 
     public class QuizQuestion

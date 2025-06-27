@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\chatbotcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:chatbotcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\cybersecuritychatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:cybersecuritychatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\chatbotcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:chatbotcomponent.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\cybersecuritychatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:cybersecuritychatbot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EE11B372-5AE1-42CC-BA59-94FCBB4674A6}|Form1.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +38,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
@@ -46,19 +46,21 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-24T17:12:39.792Z"
+              "WhenOpened": "2025-06-24T17:12:39.792Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "ChatBotComponent.cs",
               "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\ChatBotComponent.cs",
               "RelativeDocumentMoniker": "ChatBotComponent.cs",
               "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\ChatBotComponent.cs",
               "RelativeToolTip": "ChatBotComponent.cs",
-              "ViewState": "AgIAAA0BAAAAAAAAAAAAAEcBAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALAAAAAAAAAAAAAIwEcBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:05:44.738Z"
+              "WhenOpened": "2025-06-11T14:05:44.738Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -68,14 +70,14 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\Program.cs*",
               "RelativeToolTip": "Program.cs*",
-              "ViewState": "AgIAAA4BAAAAAAAAAAAewKkDAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAMMDAAAAAAAAAAAowAAEAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-11T14:03:07.374Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
@@ -83,30 +85,33 @@
               "RelativeToolTip": "Form1.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:02:38.173Z"
+              "WhenOpened": "2025-06-11T14:02:38.173Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "CyberSecurityChatbot.cs",
               "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\CyberSecurityChatbot.cs",
               "RelativeDocumentMoniker": "CyberSecurityChatbot.cs",
               "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\CyberSecurityChatbot.cs",
               "RelativeToolTip": "CyberSecurityChatbot.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADAAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAADAAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T14:04:24.465Z"
+              "WhenOpened": "2025-06-11T14:04:24.465Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\lab_services_student\\Desktop\\Prog6221\\Form1\\Form1.cs [Design]",
               "RelativeToolTip": "Form1.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-11T13:59:21.129Z"
+              "WhenOpened": "2025-06-11T13:59:21.129Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
