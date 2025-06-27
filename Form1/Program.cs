@@ -35,7 +35,7 @@ namespace CyberSecurityAwarenessBot
     public partial class Form1 : Form
     {
         // Add these for audio playback
-        
+
         // Colors
         private readonly Color PrimaryColor = Color.FromArgb(0, 123, 255);
         private readonly Color SecondaryColor = Color.FromArgb(40, 44, 52);
@@ -56,7 +56,7 @@ namespace CyberSecurityAwarenessBot
         private const int MaxLogEntries = 10;
 
         // NLP keywords
-        private readonly string[] taskKeywords = { "task", "remind", "reminder", "add", "create", "set" };
+        private readonly string[] taskKeywords = { "task", "remind", "reminder", "add", "create", "set", "delete", "remove" };
         private readonly string[] quizKeywords = { "quiz", "game", "test", "question", "challenge" };
         private readonly string[] logKeywords = { "log", "activity", "history", "summary", "what have you done" };
 
@@ -77,6 +77,9 @@ namespace CyberSecurityAwarenessBot
         private FlowLayoutPanel quizOptionsPanel;
         private Button backToChatButton;
         private PictureBox botAvatar;
+        private Button showLogButton;
+        private Button startQuizButton;
+        private Button deleteTaskButton;
 
         public Form1()
         {
@@ -91,7 +94,6 @@ namespace CyberSecurityAwarenessBot
         {
             // This method is intentionally left empty for designer support
         }
-
 
         private void SetupUI()
         {
@@ -193,7 +195,7 @@ namespace CyberSecurityAwarenessBot
             taskListBox = new ListBox
             {
                 Location = new Point(0, 40),
-                Size = new Size(200, 200),
+                Size = new Size(200, 180),
                 BorderStyle = BorderStyle.FixedSingle,
                 Font = new Font("Segoe UI", 9),
                 BackColor = Color.White,
@@ -201,11 +203,56 @@ namespace CyberSecurityAwarenessBot
             };
             sidePanel.Controls.Add(taskListBox);
 
+            // Delete Task button
+            deleteTaskButton = new Button
+            {
+                Text = "Delete Selected Task",
+                Size = new Size(200, 30),
+                Location = new Point(0, 225),
+                BackColor = Color.FromArgb(220, 53, 69),
+                ForeColor = Color.White,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 9)
+            };
+            deleteTaskButton.FlatAppearance.BorderSize = 0;
+            deleteTaskButton.Click += DeleteTaskButton_Click;
+            sidePanel.Controls.Add(deleteTaskButton);
+
+            // Show Log button
+            showLogButton = new Button
+            {
+                Text = "Show Activity Log",
+                Size = new Size(200, 40),
+                Location = new Point(0, 260),
+                BackColor = AccentColor,
+                ForeColor = DarkText,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10)
+            };
+            showLogButton.FlatAppearance.BorderSize = 0;
+            showLogButton.Click += (s, e) => { ShowActivityLog(); };
+            sidePanel.Controls.Add(showLogButton);
+
+            // Start Quiz button
+            startQuizButton = new Button
+            {
+                Text = "Start Cybersecurity Quiz",
+                Size = new Size(200, 40),
+                Location = new Point(0, 310),
+                BackColor = AccentColor,
+                ForeColor = DarkText,
+                FlatStyle = FlatStyle.Flat,
+                Font = new Font("Segoe UI", 10)
+            };
+            startQuizButton.FlatAppearance.BorderSize = 0;
+            startQuizButton.Click += (s, e) => { StartQuiz(); };
+            sidePanel.Controls.Add(startQuizButton);
+
             // Quiz panel (initially hidden)
             quizPanel = new Panel
             {
-                Location = new Point(0, 250),
-                Size = new Size(200, 250),
+                Location = new Point(0, 360),
+                Size = new Size(200, 200),
                 Visible = false
             };
             sidePanel.Controls.Add(quizPanel);
@@ -223,7 +270,7 @@ namespace CyberSecurityAwarenessBot
             quizOptionsPanel = new FlowLayoutPanel
             {
                 Location = new Point(0, 70),
-                Size = new Size(200, 150),
+                Size = new Size(200, 120),
                 FlowDirection = FlowDirection.TopDown,
                 WrapContents = false,
                 AutoScroll = true
@@ -244,6 +291,24 @@ namespace CyberSecurityAwarenessBot
             backToChatButton.FlatAppearance.BorderSize = 0;
             backToChatButton.Click += (s, e) => { quizPanel.Visible = false; };
             sidePanel.Controls.Add(backToChatButton);
+        }
+
+        private void DeleteTaskButton_Click(object sender, EventArgs e)
+        {
+            if (taskListBox.SelectedIndex >= 0 && taskListBox.SelectedIndex < tasks.Count)
+            {
+                var taskToDelete = tasks[taskListBox.SelectedIndex];
+                tasks.RemoveAt(taskListBox.SelectedIndex);
+                UpdateTaskList();
+
+                string logEntry = $"Task deleted: '{taskToDelete.Description}'";
+                AddToActivityLog(logEntry);
+                AddBotMessage($"Task deleted: \"{taskToDelete.Description}\"");
+            }
+            else
+            {
+                AddBotMessage("Please select a task to delete first.");
+            }
         }
 
         private Image CreateBotAvatar()
@@ -458,22 +523,22 @@ namespace CyberSecurityAwarenessBot
         private string AnalyzeSentiment(string input)
         {
             input = input.ToLower();
-            
+
             // Positive sentiment indicators
-            if (input.Contains("great") || input.Contains("awesome") || input.Contains("thank") || 
+            if (input.Contains("great") || input.Contains("awesome") || input.Contains("thank") ||
                 input.Contains("cool") || input.Contains("love") || input.Contains("happy"))
                 return "positive";
-            
+
             // Negative sentiment indicators
-            if (input.Contains("hate") || input.Contains("angry") || input.Contains("frustrat") || 
+            if (input.Contains("hate") || input.Contains("angry") || input.Contains("frustrat") ||
                 input.Contains("annoy") || input.Contains("sad") || input.Contains("mad"))
                 return "negative";
-            
+
             // Worried/concerned indicators
-            if (input.Contains("worri") || input.Contains("concern") || input.Contains("scare") || 
+            if (input.Contains("worri") || input.Contains("concern") || input.Contains("scare") ||
                 input.Contains("afraid") || input.Contains("fear"))
                 return "worried";
-            
+
             return "neutral";
         }
 
@@ -557,10 +622,10 @@ namespace CyberSecurityAwarenessBot
                     "- VPNs\n" +
                     "- Malware protection\n" +
                     "- Or type 'quiz' for a cybersecurity quiz";
-                
+
                 if (sentiment == "negative")
                     unsureResponse = "I'm sorry I didn't understand. " + unsureResponse;
-                
+
                 AddBotMessage(unsureResponse);
             }
         }
@@ -571,7 +636,27 @@ namespace CyberSecurityAwarenessBot
                 "I understand managing tasks can be overwhelming. " :
                 "";
 
-            if (input.ToLower().Contains("add task") || input.ToLower().Contains("create task"))
+            if (input.ToLower().Contains("delete task") || input.ToLower().Contains("remove task"))
+            {
+                if (tasks.Count == 0)
+                {
+                    AddBotMessage("You don't have any tasks to delete.");
+                    return;
+                }
+
+                if (input.ToLower().Contains("all"))
+                {
+                    tasks.Clear();
+                    UpdateTaskList();
+                    AddBotMessage("All tasks have been deleted.");
+                    AddToActivityLog("All tasks deleted");
+                }
+                else
+                {
+                    AddBotMessage("Please select the task you want to delete from the side panel and click the 'Delete Selected Task' button.");
+                }
+            }
+            else if (input.ToLower().Contains("add task") || input.ToLower().Contains("create task"))
             {
                 string taskDescription = ExtractTaskDescription(input);
                 if (!string.IsNullOrEmpty(taskDescription))
@@ -605,7 +690,10 @@ namespace CyberSecurityAwarenessBot
             }
             else
             {
-                AddBotMessage($"{sentimentPrefix}I can help you with cybersecurity tasks. Try saying \"Add task to enable two-factor authentication in 3 days\"");
+                AddBotMessage($"{sentimentPrefix}I can help you with cybersecurity tasks. Try saying:\n" +
+                    "- \"Add task to enable two-factor authentication in 3 days\"\n" +
+                    "- \"Delete task\" (then select which one)\n" +
+                    "- \"Show tasks\"");
             }
         }
 
@@ -661,6 +749,12 @@ namespace CyberSecurityAwarenessBot
         private void UpdateTaskList()
         {
             taskListBox.Items.Clear();
+            if (tasks.Count == 0)
+            {
+                taskListBox.Items.Add("No tasks");
+                return;
+            }
+
             foreach (var task in tasks)
             {
                 taskListBox.Items.Add($"{task.Description} (Due: {task.DueDate:MM/dd})");
@@ -682,7 +776,7 @@ namespace CyberSecurityAwarenessBot
             }
         }
 
-        private void StartQuiz()
+        public void StartQuiz()
         {
             quizPanel.Visible = true;
             currentQuestionIndex = 0;
@@ -764,7 +858,7 @@ namespace CyberSecurityAwarenessBot
             AddToActivityLog($"Quiz completed - Score: {quizScore}/{quizQuestions.Count}");
         }
 
-        private void ShowActivityLog()
+        public void ShowActivityLog()
         {
             AddBotMessage("📜 Here's your recent activity:");
 

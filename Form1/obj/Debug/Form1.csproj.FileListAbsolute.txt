@@ -7,3 +7,4 @@ C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.csproj.Gene
 C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.csproj.CoreCompileInputs.cache
 C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.exe
 C:\Users\lab_services_student\Desktop\Prog6221\Form1\obj\Debug\Form1.pdb
+C:\Users\lab_services_student\Desktop\Prog6221\Form1\bin\Debug\Recording.wav
